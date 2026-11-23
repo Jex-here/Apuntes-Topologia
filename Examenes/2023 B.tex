@@ -1,0 +1,146 @@
+\chapter*{2023 Febrero}
+\addcontentsline{toc}{chapter}{2023 Febrero}
+
+\begin{enunciado}
+    \hypertarget{2023 B 1}{}
+    \textbf{1. (3,75 puntos)} Se pide:
+    \begin{enumerate}[label=\alph*)]
+        \item Definir la topología producto de dos espacios topológicos.
+        \item Describir una subbase, una base y los abiertos de la topología producto de dos espacios topológicos.
+        \item Sea \((X,\cT)\) un espacio topológico de Hausdorff. Estudiar si la diagonal \(\Delta = \{(x,x) \mid x \in X\} \subset X \times X\) es un subconjunto cerrado de la topología producto.
+    \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+    \vspace{-0.5em}
+    \begin{enumerate}[label=\alph*)]
+        \item Dados dos espacios topológicos $(X_1,\cT_1)$ y $(X_2,\cT_2)$, la topología producto es la topología inducida en $X_1 \times X_2$ por las aplicaciones proyección: 
+        \[
+        \begin{aligned}
+            p_1&\colon X_1\times X_2 \to (X_1,\mathcal{T}_1),
+            & p_1(x_1,x_2)&=x_1;                \\
+            p_2&\colon X_1\times X_2 \to (X_2,\mathcal{T}_2),
+            & p_2(x_1,x_2)&=x_2;
+        \end{aligned}
+        \]
+        \item Una subbase para la topología producto es la familia formada por las imágenes inversas de abiertos de $(X_1,\cT_1)$ por $p_1$, junto con las imágenes inversas de abiertos de $(X_2,\cT_2)$ por $p_2$, es decir, \[\cA = \{\inv{p_i}(U_i) \mid U_i \in \cT_i, \ i = 1,2\}\]
+        De esta forma, una base se compone por las intersecciones finitas de elementos de la subbase: \[\cB = \{\inv{p_1}(U_1) \cap \inv{p_2}(U_2) = U_1 \times U_2 \mid U_i \in \cT_i, \ i = 1,2\}\]
+        Por último, los abiertos serán las uniones arbitrarias de elementos de la base.
+
+        \item Se demostrará que $\Delta$ es cerrado probando que $X \times X - \Delta$ es un abierto en la topología producto. 
+        
+        Sean $x,y\in X \text{ con } x \neq y$. $(x,y)$ es un elemento arbitrario de $X \times X$ que no pertenece a $\Delta$, por lo que la proposición quedará probada si puede encontrarse un abierto $W \in \cT_1 \times \cT_2$ que contenga a $(x,y)$, pero que no contenga a ningún elemento de la diagonal, pues tomando la unión arbitraria de estos abiertos para cada $x,y$ distintos, se tiene que el complementario de $\Delta$ es abierto.
+
+        Por ser $(X,\cT)$ de Hausdorff, se tiene que existen abiertos $U,V \text{ con } x\in U, y \in V \text{ y verificando } U \cap V = \emptyset$. Se tiene que $W = U \times V$ es un abierto en la topología producto que contiene a $(x,y)$. Para demostrar que $W$ no contiene a elementos de la diagonal supongamos, por reducción al absurdo, que existe un elemento de la forma $(z,z)$ en $W$. Por ser $W = U \times V$, debe ser $z \in U$ y $z \in V $, y es por lo tanto $z \in U \cap V \neq \emptyset$, contradiciendo la elección de $U$ y $V$ disjuntos.
+
+        \begin{figure}[H]
+            \begin{center}
+            % Definición de colores similares a tu dibujo
+            \definecolor{darkred}{RGB}{150, 0, 20}
+            \definecolor{darkgreen}{RGB}{40, 160, 60}
+            \definecolor{lightgreen}{RGB}{180, 220, 190}
+            \definecolor{myblue}{RGB}{0, 162, 232}
+            \hspace{6em}
+            \begin{tikzpicture}[scale=1.1, every node/.style={font=\sffamily}]
+                % Coordenadas clave:
+                % U = (2.0, 3.0) centrado en x = 2.5
+                % V = (3.6, 4.6) centrado en y = 4.1
+
+                % Rectángulo azul W = U x V
+                \fill[myblue] (2.0, 3.6) rectangle (3.0, 4.6);
+                \node[myblue, above] at (2.5, 4.65) {$\mathbf{W = U \times V}$};
+
+                % Líneas guía verde claro
+                \draw[lightgreen, very thick] (2.0, 0) -- (2.0, 6);
+                \draw[lightgreen, very thick] (3.0, 0) -- (3.0, 6);
+                \draw[lightgreen, very thick] (0, 3.6) -- (6, 3.6);
+                \draw[lightgreen, very thick] (0, 4.6) -- (6, 4.6);
+
+                % Diagonal Delta
+                \draw[darkred, ultra thick] (0,0) -- (6,6);
+                \draw[darkred, very thick, ->, >=Straight Barb] (5.65, 5.5) -- (6.4, 5.5) 
+                    node[right, font=\large] {$\Delta = \{(x,x), \, x \in X\}$};
+
+                % Cuadrado principal X x X
+                \draw[black, ultra thick] (0,0) rectangle (6,6);
+                \node[black, above right, font=\Large] at (6, 6) {$X \times X$};
+
+                % --- EJE HORIZONTAL (Abajo) ---
+                % Intervalo U y punto x
+                \node[darkgreen, font=\large\bfseries] at (2.0, 0) {(};
+                \node[darkgreen, font=\large\bfseries] at (3.0, 0) {)};
+                \draw[myblue, very thick] (2.5, -0.1) -- (2.5, 0.1);
+                \node[darkgreen, above] at (2.5, 0.15) {$U$};
+
+                % Intervalo V y punto y
+                \node[darkgreen, font=\large\bfseries] at (3.6, 0) {(};
+                \node[darkgreen, font=\large\bfseries] at (4.6, 0) {)};
+                \draw[myblue, very thick] (4.1, -0.1) -- (4.1, 0.1);
+                \node[darkgreen, above] at (4.1, 0.15) {$V$};
+
+                % Etiquetas x != y abajo
+                \node[myblue, below] at (2.5, -0.15) {$x$};
+                \node[myblue, below] at (3.3, -0.15) {$\neq$};
+                \node[myblue, below] at (4.1, -0.15) {$y$};
+
+                % --- EJE VERTICAL (Izquierda) ---
+                % Intervalo U y punto x
+                \node[darkgreen, font=\large\bfseries, rotate=90] at (0, 2.0) {(};
+                \node[darkgreen, font=\large\bfseries, rotate=90] at (0, 3.0) {)};
+                \draw[myblue, very thick] (-0.1, 2.5) -- (0.1, 2.5);
+                \node[myblue, left] at (-0.15, 2.5) {$x$};
+                \node[darkgreen, right] at (0.15, 2.5) {$U$};
+
+                % Intervalo V y punto y
+                \node[darkgreen, font=\large\bfseries, rotate=90] at (0, 3.6) {(};
+                \node[darkgreen, font=\large\bfseries, rotate=90] at (0, 4.6) {)};
+                \draw[myblue, very thick] (-0.1, 4.1) -- (0.1, 4.1);
+                \node[myblue, left] at (-0.15, 4.1) {$y$};
+                \node[darkgreen, right] at (0.15, 4.1) {$V$};
+
+            \end{tikzpicture}
+        \end{center}
+        \vspace{-1em}
+        \caption{$\Delta$ es cerrado si $X$ es Hausdorff}
+        \end{figure}
+    \end{enumerate}
+\end{solucion}
+
+
+
+\begin{enunciado}
+    \hypertarget{2023 B 2}{}
+    \textbf{2. (3,75 puntos)} En el conjunto \(\mathbb{R}\) de los números reales se considera la topología
+    \[
+        \cT = \{\emptyset\} \cup \{A \subset \mathbb{R} \mid \mathbb{Q} \subset A\}.
+    \]
+    \begin{enumerate}[label=\alph*)]
+        \item Estudiar si \((\mathbb{R}, \cT)\) es metrizable.
+        \item Estudiar si \((\mathbb{R}, \cT)\) verifica el segundo axioma de numerabilidad.
+        \item Estudiar si \((\mathbb{R}, \cT)\) es regular.
+    \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+    \underline{Estudiar la topología}: como la única restricción es que $\Q$ debe estar contenido en todo abierto no vacío, estos se pueden expresar de la forma $U = \{\Q \cup K \mid K \in \cP(\Irr)\}$, donde $\Irr$ son los irracionales. De esta manera, los cerrados no triviales serán elementos de $\cP(\Irr)$.
+
+    \begin{enumerate}[label=\alph*)]
+        \item Un espacio topológico $(X,\cT)$ es metrizable si se puede definir en él una función distancia $d$. Como es difícil construir una distancia en un espacio topológico arbitrario, lo más simple es usar una caracterización o encontrar propiedades que deba cumpla un espacio métrico necesariamente. Debido a los apartados $b)$ y $c)$ se usará la siguiente caracterización:
+        
+        (Teorema de Urysohn) Un espacio topológico es metrizable si es regular y tiene una base numerable. De forma que $a)$ queda resuelto tras comprobar $b)$ y $c)$.
+
+        \item Un espacio topológico $(X,\cT)$ verifica el segundo axioma de numerabilidad si tiene una base numerable. Como los abiertos involucran a partes de $\Irr$, que es un conjunto no numerable, aparenta que no va a satisfacer el axioma.
+        
+        La forma clásica de demostrar que un espacio topológico $(X,\cT)$ no tiene una base numerable es la siguiente: tomar una cantidad no numerable de abiertos $U_\alpha$y mostrar que cada uno debe contener a un elemento básico distinto, por lo que cualquier base deberá contener una cantidad no numerable de elementos.
+        
+    \end{enumerate}
+\end{solucion}
+
+\begin{enunciado}
+    \hypertarget{2023 B 3}{}
+    \textbf{3. (2,5 puntos)} En el intervalo \(X = [-1, 1]\) de la recta real se considera la topología
+    \[
+        T = \{A \subset X \mid 0 \notin A \text{ o bien } (-1, 1) \subset A\}.
+    \]
+    Estudiar si el espacio topológico \((X, T)\) es compacto.
+\end{enunciado}

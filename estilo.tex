@@ -1,0 +1,174 @@
+% ==============================================================================
+% Estilo de los teoremas y secciones
+% ==============================================================================
+\usepackage{titlesec}
+
+% Ajusta el formato de \section: {formato}{etiqueta}{separación}{código antes}{código después}
+% Estructura: \titlespacing*{comando}{margen izquierdo}{espacio antes}{espacio después}
+
+% --- SECCIÓN: Centrada, grande y numerada ---
+\titleformat{\section}[block]
+{\normalfont\Large\bfseries\color{black}\centering}
+{\thesection.}
+{0.5em}
+{}
+\titlespacing*{\section}{0pt}{*2}{*3}
+
+% --- SUBSECCIÓN: A la izquierda, normal y SIN numeración ---
+\titleformat{s}
+{\normalfont\normalsize\bfseries\color{black}\raggedright}
+{}
+{0em}
+{}
+\titlespacing*{\subsection}{0pt}{*2}{*1}
+
+% --- SUBSUBSECCIÓN: Más grande (ej. \large) y a la izquierda ---
+\titleformat{\subsubsection}
+{\normalfont\large\bfseries\color{black}\raggedright} % Cambia \large por \Large si la quieres aún más grande
+{\thesubsubsection} % Pon {} aquí si tampoco quieres que esté numerada
+{0.5em}
+{}
+\titlespacing*{\subsubsection}{0pt}{*1.5}{*1}
+
+% --- 2. CONFIGURACIÓN DE LAS SUBSECCIONES 
+
+\newenvironment{enunciado}
+  {\par\large\color{black}}
+  {\par\medskip}
+
+% Entorno para la resolución (Azul)
+\newenvironment{solucion}
+  {\par\large\color{blue}}
+  {\par\bigskip}
+
+\newtheoremstyle{Proposición}
+  {5pt}         % Espacio arriba
+  {10pt}        % Espacio abajo
+  {\normalfont} % Fuente del cuerpo
+  {}            % Sangría del cuerpo 
+  {\bfseries}   % Fuente del encabezado (Definición 3.1)
+  {.}           % Puntuación después del encabezado
+  {.5em}           % Espacio después del encabezado
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}} % Formato del encabezado
+
+\newtheoremstyle{Ejemplo}
+  {5pt}         % Espacio arriba
+  {10pt}        % Espacio abajo
+  {\normalfont} % Fuente del cuerpo
+  {}            % Sangría del cuerpo 
+  {\bfseries}   % Fuente del encabezado (Definición 3.1)
+  {.}           % Puntuación después del encabezado
+  {.5em}           % Espacio después del encabezado
+  {Ejemplo \thmnumber{#2}} % Formato del encabezado
+
+\newtheoremstyle{Ejercicio}
+  {5pt}         % Espacio arriba
+  {10pt}        % Espacio abajo
+  {\normalfont} % Fuente del cuerpo
+  {0pt}            % Sangría del cuerpo 
+  {\bfseries}   % Fuente del encabezado 
+  {}           % Puntuación después del encabezado
+  {0pt}           % Espacio después del encabezado
+  {Ejercicio \thmnumber{#2}\newline} % Formato del encabezado
+
+\newtheoremstyle{Ampliacion}
+  {5pt}         % Espacio arriba
+  {10pt}        % Espacio abajo
+  {\normalfont} % Fuente del cuerpo
+  {0pt}            % Sangría del cuerpo 
+  {\bfseries}   % Fuente del encabezado 
+  {}           % Puntuación después del encabezado
+  {0pt}           % Espacio después del encabezado
+  {\centering Complemento \newline} % Formato del encabezado
+
+
+%-----------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------
+
+\theoremstyle{Proposición}
+\newtheorem*{prop}{Proposición}
+
+\tcolorboxenvironment{prop}{
+  enhanced,
+  breakable,                % Permite que el ejemplo salte de página si es muy largo
+  colback=black!5!white,    % Fondo verde muy claro (5% verde, 95% blanco)
+  colframe=black!50!black,  % Borde verde oscuro
+  boxrule=0.5pt,            % Grosor del borde
+  arc=3pt,                  % Esquinas redondeadas
+  top=2pt, bottom=2pt,      % Espaciado interior arriba y abajo
+  left=5pt, right=5pt       % Espaciado interior a los lados
+}
+
+\newtheorem*{deff}{Definición}
+\tcolorboxenvironment{deff}{
+  enhanced,
+  breakable,                % Permite que el ejemplo salte de página si es muy largo
+  colback=black!5!white,    % Fondo verde muy claro (5% verde, 95% blanco)
+  colframe=black!50!black,  % Borde verde oscuro
+  boxrule=0.5pt,            % Grosor del borde
+  arc=3pt,                  % Esquinas redondeadas
+  top=2pt, bottom=2pt,      % Espaciado interior arriba y abajo
+  left=5pt, right=5pt       % Espaciado interior a los lados
+}
+
+\theoremstyle{Ejemplo}
+\newtheorem{ej}{Ejemplo}
+\tcolorboxenvironment{ej}{
+  enhanced,
+  breakable,                % Permite que el ejemplo salte de página si es muy largo
+  colback=green!5!white,    % Fondo verde muy claro (5% verde, 95% blanco)
+  colframe=green!50!black,  % Borde verde oscuro
+  boxrule=0.5pt,            % Grosor del borde
+  arc=3pt,                  % Esquinas redondeadas
+  top=2pt, bottom=2pt,      % Espaciado interior arriba y abajo
+  left=5pt, right=5pt       % Espaciado interior a los lados
+}
+
+\theoremstyle{Ejercicio}
+\newtheorem{ex}{}
+\tcolorboxenvironment{ex}{
+  enhanced,
+  breakable,                % Permite que el ejemplo salte de página si es muy largo
+  colback=red!5!white,    % Fondo verde muy claro (5% verde, 95% blanco)
+  colframe=red!50!black,  % Borde verde oscuro
+  boxrule=0.5pt,            % Grosor del borde
+  arc=3pt,                  % Esquinas redondeadas
+  top=2pt, bottom=2pt,      % Espaciado interior arriba y abajo
+  left=5pt, right=5pt       % Espaciado interior a los lados
+}
+
+
+\theoremstyle{Ejemplo}
+\newtheorem{_ejs}[ej]{Ejemplo}
+\newenvironment{ejs}
+  {\begin{_ejs}\leavevmode\vspace{-0.2\baselineskip}\begin{itemize}[leftmargin=15pt]}
+  {\end{itemize}\end{_ejs}}
+
+\tcolorboxenvironment{ejs}{
+  enhanced,
+  breakable,                % Permite que el ejemplo salte de página si es muy largo
+  colback=green!5!white,    % Fondo verde muy claro (5% verde, 95% blanco)
+  colframe=green!50!black,  % Borde verde oscuro
+  boxrule=0.5pt,            % Grosor del borde
+  arc=3pt,                  % Esquinas redondeadas
+  top=2pt, bottom=2pt,      % Espaciado interior arriba y abajo
+  left=5pt, right=5pt       % Espaciado interior a los lados
+}
+
+
+\newenvironment{amp}
+  {\begin{center}
+  \large\textbf{Ampliación}
+  \end{center}}
+  {}
+
+\tcolorboxenvironment{amp}{
+  enhanced,
+  breakable,                % Permite que el ejemplo salte de página si es muy largo
+  colback=blue!5!white,    % Fondo verde muy claro (5% verde, 95% blanco)
+  colframe=blue!50!black,  % Borde verde oscuro
+  boxrule=0.5pt,            % Grosor del borde
+  arc=3pt,                  % Esquinas redondeadas
+  top=2pt, bottom=2pt,      % Espaciado interior arriba y abajo
+  left=5pt, right=5pt       % Espaciado interior a los lados
+}

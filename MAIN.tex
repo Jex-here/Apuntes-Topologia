@@ -1,0 +1,45 @@
+\documentclass[12pt, a4paper]{report}
+
+% ============== Configuración del documento ==============
+\input{cabecera.tex}
+
+% ------------------- Nombre ---------------------
+% Nombre oficial:   Jesús Berdonces Encinas
+% Nick:             ジェクザ                 <-- Pronunciación en la portada si se elije.
+\newcommand{\myName}{ジェクザ}
+
+%-----------------COMIENZO DEL DOCUMENTO---------------
+
+
+\begin{document}
+
+    %------------Preliminares--------------------------
+
+    \pagenumbering{roman}
+
+    \input{preludio/portada}
+
+    \tableofcontents
+    \newpage
+    %---------------------------------------------------
+
+    \pagenumbering{arabic}
+    \pagestyle{fancy}
+        \fancyhead{}
+        \fancyfoot{}
+        \fancyhead[R]{\nouppercase{\rightmark}}
+        \fancyfoot[R]{\thepage}
+        \fancyfoot[L]{\begin{CJK}{UTF8}{min}%
+                        \myName
+                    \end{CJK}}
+
+
+    %--------------Exámenes---------------------------
+
+    \input{temario/Temas 1-4.tex}        
+    % \input{examenes/main.tex}
+
+
+    
+	
+\end{document}

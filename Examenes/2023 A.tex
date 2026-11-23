@@ -1,0 +1,129 @@
+\clearpage
+\chapter*{2023 Enero}
+\addcontentsline{toc}{chapter}{2023 Enero}
+
+%-----------------------------EJERCICIO 1-----------------------------------------
+\begin{enunciado}
+    \hypertarget{2023 A 1}{}
+    \textbf{1. (3,75 puntos)} En el conjunto \(\mathbb{R}\) de los números reales se considera la topología
+    \[
+        \cT = \{\mathbb{R}\} \cup \{G \subset \mathbb{R} \mid 0 \notin G\}.
+    \]
+    \begin{enumerate}[label=\alph*)]
+        \item Estudiar si \((\mathbb{R}, \cT)\) es separable.
+        \item Estudiar si \((\mathbb{R}, \cT)\) es normal.
+        \item Estudiar la convergencia de sucesiones en \((\mathbb{R}, \cT)\).
+    \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+    \underline{Estudiar la topología}:
+    Los abiertos de $\cT$ son $\R$ junto con $\mathcal{P}(\R - \{0\})$, por lo que todo conjunto unipuntual distinto de $0$ es un abierto. Por otro lado, los cerrados son sus complementarios: el vacío y todo subconjunto de $\R$ que contenga al 0.
+
+    \begin{enumerate}[label=\alph*)]
+        \item Un espacio es separable si contiene un subconjunto numerable y denso. Como la topología parece ``casi tan fina'' como la discreta, que no es separable, intentemos demostrar que no es separable. Para ello, veamos cómo son los conjuntos densos de \((\R,\cT\)). Un conjunto $D$ de un espacio topológico $X$ es denso si $\overline{D} = X$, es decir, $\mathring{D} \cup fr(D) = X$. En nuestro caso, tomando $D = \{x\}$, $x \neq 0$, se tiene que $\mathring{D} = \{x\}$, y $fr(D) = \{0\}$, pues el único entorno de $0$ es $\R$, que intersecta a cualquier otro subconjunto; por lo que es $\overline{D} = \{0\} \cup \{x\}$, y para que sea $\overline{D} = \R$, deberá ser $D = \R - \{0\}$, el cual no es numerable. Queda investigar qué sucede al tomar conjuntos con el $0$. Tomando $D = \{0\}$ se tiene $\overline{D} = \{0\}$, pues es cerrado, y se tiene que $\overline{\{0\} \cup D} = \overline{D}$, para cualquier subconjunto $D \subset \R$. Así, los únicos conjuntos densos en $(\R, \cT)$ son no numerables, por lo que $(\R, \cT)$ no es separable.
+        
+        Otra forma de estudiar la densidad es mediante la caracterización \[D \text{ es denso en X }\iff \forall x \in X \ \forall U \text{entorno de $x$, es } U \cap D \neq \emptyset.\] De esta forma, si $D$ es denso, debe ser al menos $D = \R -\{0\}$, pues para cada $x \neq 0$, $U = \{x\}$ es un abierto, y como $U \cap D \neq \emptyset$, deberá ser $x \in D$. De esta forma, se concluye que no hay subconjuntos densos numerables.
+
+        \item Un espacio topológico $(X,\cT)$ es normal si se pueden separar conjuntos cerrados mediante abiertos:
+        \[
+            \forall\ C,D \text{ cerrados con } C \cap D = \emptyset, \ \exists \ U,V \in \cT \text{ tal que: } U \supset C, V \supset D \text{ y } U \cap V = \emptyset.
+        \]
+        Hemos visto que todo conjunto cerrado no vacío contiene al $0$, por lo que no existen cerrados no vacíos que sean disjuntos, y se concluye que el espacio topológico es trivialmente normal.
+
+        \item Una sucesión $\{a_n\}_{n\in \N}$ es convergente a $x \in X$ si todo entorno $U$ de $x$, $U_x$, contiene a la sucesión a partir de algún elemento, es decir,
+        \[
+            \forall U_x \ \exists m \in \N\text{ tal que }\{a_i\}_{i\geq m} \subset U_x. 
+        \]
+
+        Como todos los conjuntos unipuntuales de $\R - \{0\}$ son abiertos, se tiene que la única manera en la que una sucesión converja a $x \neq 0$ es que sea $a_i = x$ a partir de cierto elemento $m$, pues ha de ser $\{a_i\}_{i\geq m} \subset U_x = \{x\}$. Por otro lado, toda sucesión converge a $0$, pues el único entorno de $0$ es $\R$, y se tiene $\{a_n\}_{n\in\N} \subset \R$.
+    \end{enumerate}
+\end{solucion}
+
+
+%-----------------------------EJERCICIO 2-----------------------------------------
+\begin{enunciado}
+    \hypertarget{2023 A 2}{}
+    \textbf{2. (3,75 puntos)} Sea \(\mathbb{R}\) el conjunto de los números reales y sea $\cS$ la topología de \(\mathbb{R}\) cuya base es \(\cB = \{(a,b] \mid a,b \in \mathbb{R}\}\). Se considera la aplicación $f : \mathbb{R} \to (\mathbb{R}, \cS)$, definida por \(f(x) = |x|\), y la topología inicial \(\cT\) inducida por \(f\) en \(\mathbb{R}\). Se pide:
+    \begin{enumerate}[label=\alph*)]
+        \item Determinar una base de \(\cT\).
+        \item Estudiar si \((\mathbb{R}, \cT)\) es un espacio de Hausdorff.
+        \item Hallar la adherencia del conjunto \(\cA = \{x \in \mathbb{R} \mid 0 < x \le 3\}\) en \((\mathbb{R}, \cT)\).
+    \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+    \underline{Estudiar la topología inicial $\cT$}: 
+    Los abiertos de $\cT$ son los conjuntos de la forma $U = \inv{f}(V)$, donde $V \in \cS$, así que primero veamos cómo se comporta la imagen inversa de $f$. Dado $x \in \R$, es
+    \[
+        \inv{f}(x) = \left\{
+        \begin{array}{cl}
+            \emptyset  &, \text{si } x < 0 \\
+            0          &, \text{si } x = 0 \\
+            \{-x, x\}  &, \text{si } x > 0
+        \end{array}
+        \right.
+    \]
+    Por lo que, caso por caso, se tiene:
+    \begin{enumerate}[label={}]
+        \item \underline{$0 \leq a < b$}:
+        \[
+            \inv{f}((a,b]) = [-b,-a) \cup (a, b] := A
+        \]
+        \item \underline{$a < 0 < b$}:
+        \[
+            \inv{f}((a,b]) = [-b,0] \cup [0, b] = [-b, b] := B
+        \]
+        \item \underline{$a < b = 0$}:
+        \[
+            \inv{f}((a,b]) = 0
+        \]
+        \item \underline{$a < b < 0$}:
+        \[
+            \inv{f}((a,b]) = \emptyset
+        \]
+    \end{enumerate}
+    
+    \begin{enumerate}[label=\alph*)]
+        \item Una base para $\cT$ se puede determinar a partir de las imágenes inversas de los elementos de una base de $\cS$, pues si es $U \in \cT$, este se puede expresar como 
+        \[
+            U = \inv{f}(V) = \inv{f}(\bigcup\limits_{B_i\in \cB} B_i) = \bigcup\limits_{B_i\in \cB} \inv{f}(B_i),
+        \]
+        es decir, todo abierto $U$ de $\cT$ se puede expresar como unión de elementos obtenidos como imagen inversa de elementos de una base de $\cS$.
+
+        De esta manera, se afirma que la colección $\cC = A \cup B \cup \{0\}$ es una base para $\cT$.
+
+        \item Un espacio topológico $(X,\cT)$ es de Hausdorff si se pueden separar puntos mediante abiertos:
+        \[
+        \forall x,y\in X \text{ con } x \neq y, \exists U,V \in \cT \text{ tal que } x \in U, y \in V \text{ y } U \cap V = \emptyset.
+        \]
+
+        Observando cómo son los elementos de la base $\cT$, se puede apreciar que cualquier abierto que contenga a $x \neq 0$, contiene también al elemento $-x$. De esta forma, no se pueden encontrar abiertos disjuntos que contengan respectivamente a $x$ y $-x$, pues dichos abiertos son de la forma $[-b,-a) \cup (a, b]$ o de la forma $[-b,b]$. Se concluye por lo tanto que no es de Hausdorff.
+
+        \item Tal y como se ha visto, cualquier entorno que contenga a $x$ deberá contener a $-x$. Así, $int(\cA) = \emptyset$, pues no existen abiertos contenido en $\cA$. De igual manera, cualquier entorno de los elementos $x\in[-3,0)$ intersecta a $\cA$, por lo que $ [-3,0) \cup (0,3] \subset fr(\cA)$. Para $x$ con $|x| > 3$, se tienen entornos de la forma $[-|x|,-3) \cup (3,|x|]$ que no intersectan a $\cA$. Por último, el $\{0\}$ es abierto y no corta a $\cA$, por lo que se puede concluir que $ \overline{\cA} = [-3,0) \cup (0,3]$.
+    \end{enumerate}
+\end{solucion}
+
+%-----------------------------EJERCICIO 3-----------------------------------------
+\begin{enunciado}
+    \hypertarget{2023 A 3}{}
+    \textbf{3. (2,5 puntos)} Se pide:
+    \begin{enumerate}[label=\alph*)]
+        \item Definir espacio topológico conexo.
+        \item Sea \((X,\cT)\) un espacio topológico conexo y \(f : (X,\cT) \to (Y,\cS)\) una aplicación continua. Estudiar si el subespacio \(f(X)\) de \((Y,\cS)\) es conexo.
+    \end{enumerate}
+\end{enunciado}
+
+\begin{solucion}
+    \vspace{-1em}
+    \begin{enumerate}[label=\alph*)]
+        \item Un espacio topológico $(X,\cT)$ es conexo si no existen abiertos $U,V \in \cT$ no triviales satisfaciendo $U \cap V = \emptyset$ y $U \cup V = X$.
+
+        \item Se demostrará que $f(X)$ es conexo mediante reducción al absurdo. Supongamos entonces que $f(X)$ \textit{no} es conexo con la topología de subespacio. Se tiene entonces que existen abiertos no triviales $U,V \in f(X)$, con $U \cap V = \emptyset$ y $U \cup V = f(X)$. De la primera relación y por ser $f$ aplicación, se tiene que $\inv{f}(U) \cap \inv{f}(V) = \emptyset$, y por ser $f$ continua, se tiene que tanto $\inv{f}(U)$ como $\inv{f}(V)$ son abiertos en $(X,\cT)$; de la segunda relación se tiene que $U \cup V = f(X)$, y entonces $\inv{f}(U) \cup \inv{f}(V) = \inv{f}(U \cup V) = \inv{f}(f(X)) = X$. De esta manera, se obtiene que $(X,\cT)$ no es conexo por existir abiertos disjuntos no triviales cuya unión es $X$.
+    \end{enumerate}
+\end{solucion}
+
+
+
+
+
