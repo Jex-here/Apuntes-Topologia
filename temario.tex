@@ -384,8 +384,10 @@ Se deduce que un {\it entorno abierto} de $x$ es a su vez {\it entorno} de $x$, 
 
 Podemos considerar la colección $\cE_x$, formada por todos los entornos de un punto $x$. Tal como hemos visto en el ejemplo, esta familia puede ser bastante grande y desordenada, por lo que nos interesa tomar una subcolección $\cA_x \subset \cE_x$ que tenga la propiedad de que, sea cual sea el entorno $E\in \cE_x$ que se tome, existirá un elemento $A\in \cA_x$ contenido en $E$. Formalmente:
 
+\hypertarget{def:base_de_entornos}{}
 \begin{deff}
-    $\seatop$, $x\in X$ un elemento de $X$, y $\cE_x$ la colección de todos los entornos de $x$. La subcolección $\cA_x \subset \cE_x$ se llama {\bf base de entornos de {\it \textbf{x}}} o {\bf sistema fundamental de entornos de {\it \textbf{x}}} si cualquier elemento $E\in\cE_x$ contiene un elemento $A\in\cA_x$.
+    $\seatop$, $x\in X$ un elemento de $X$, y $\cE_x$ la colección de todos los entornos de $x$. La subcolección $\cA_x \subset \cE_x$ se llama {\bf base de entornos de {\it \textbf{x}}} o {\bf sistema fundamental de entornos de {\it \textbf{x}}} si cualquier entorno $E\in\cE_x$ contiene un elemento $A\in\cA_x$:
+    \[\forall E \in \cE_x \ \exists A\in\cA_x \text{ tal que } A \subset E\]
 \end{deff}
 
 \begin{ejs}
@@ -464,7 +466,7 @@ A diferencia de la demostración de que un espacio topológico no es 2AN mediant
             \vdots&
         \end{align*}
         donde $n\in\N$, y cada $K_n$ es finito y no contiene al $0$.
-        \item Queremos encontrar un elemento $y$ que esté en cada $A_{K_n}$. Para ello, tomamos la intersección $A = \bigcap\limits_{n\in\N} A_{K_n} = \R - \bigcup\limits_{n\in\N}K_n$, la parte de la derecha es un conjunto no numerable menos la unión numerable de conjuntos numerables, y es por lo tanto $A$ no numerable. Sea $y\in A - \{0\}$, que existe por ser no numerable, y sea $E = \R - \{y\}$. Se tiene que $E$ es entorno de $0$, sin embargo, ningún elemento $A_{K_n}\in\cA$ está contenido en $E$ pues $y$ pertenece a cada $A_{K_n}$ de $\cA$, pero $y$ no está en $E$.
+        \item Queremos encontrar un elemento $y$ que esté en cada $A_{K_n}$. Para ello, tomamos la intersección $A = \bigcap\limits_{n\in\N} A_{K_n} = \R - \bigcup\limits_{n\in\N}K_n$, obteniendo la resta entre un conjunto no numerable y una unión numerable de conjuntos numerables, y es por lo tanto $A$ no numerable. Sea $y\in A - \{0\}$, que existe por ser no numerable, y sea $E = \R - \{y\}$. Se tiene que $E$ es entorno de $0$, sin embargo, ningún elemento $A_{K_n}\in\cA$ está contenido en $E$ pues $y$ pertenece a cada $A_{K_n}$ de $\cA$, pero $y$ no está en $E$.
         \item De esta forma, hemos llegado a la contradicción de que $\cA$ no es una base de entornos de $0$ tras suponer que $\cA$ es numerable, por lo que ha de ser no numerable, y se concluye que $(\R, \cT)$ no es 1AN.
     \end{enumerate}
 \end{ej}
@@ -737,21 +739,25 @@ Veamos varios ejemplos para profundizar los conceptos:
     De igual forma que al definir una topología, un filtro suele ser una familia \textit{muy grande} y desordenada. La forma más conveniente de definirlos es mediante {\it bases de filtro}. 
 
     \begin{deff}
-        Una {\bf base de filtro } de un filtro $\cF$ es una subcolección $\cB\subset \cF$ tal que el filtro $\cF$ se puede obtener tomando superconjuntos de los elementos de la base $\cB$.
+        Una {\bf base de filtro} de un filtro $\cF$ es una subcolección $\cB\subset \cF$ tal que el filtro $\cF$ se puede obtener tomando superconjuntos de los elementos de la base $\cB$.
     \end{deff}
 
-    De esta manera, una base de filtro $\cB$ no necesita cumplir todas las propiedades de un filtro, sino que se pueden relajar las condiciones a que sea no vacía, $\emptyset \notin \cB$, y la intersección finita de elementos del $\cB$ {\it contenga} a algún elemento de $\cB$. De esta forma, una colección no vacía de conjuntos es una base de filtro para algún filtro si y solo si no contiene al conjunto vacío y la intersección finita de sus elementos contiene a algún elemento de la colección.
+    De esta manera, una base de filtro $\cB$ no necesita cumplir todas las propiedades de un filtro, sino que se pueden relajar las condiciones a una colección de conjuntos no vacía satisfaciendo:
+    \begin{enumerate}[label=--]
+        \item $\emptyset \notin \cB$.
+        \item La intersección finita de elementos de $\cB$ {\it contiene} a algún elemento de $\cB$.
+    \end{enumerate}
 
     \medskip
 
-    Otra caracterización de base de filtro es la siguiente:
+    Otra caracterización equivalente de base de filtro es la siguiente:
     \begin{prop}
         $\cB$ es una base de filtro del filtro $\cF$ si y solo si para cada $F\in \cF$ existe un elemento de la base $B\in\cB$ tal que $B\subset F$.
     \end{prop}    
-    Ahora podemos ver claramente que la definición de base de entornos en un punto no es más que la base de filtro de entornos en dicho punto.
+    Ahora podemos ver claramente que la definición de base de entornos en un punto no es más que la base de filtro de entornos en dicho punto (\hyperlink{def:base_de_entornos}{ver la definición de base de entornos en un punto}).
 
     \begin{ej}
-        En los números enteros positivos $\Z^+$ se puede considerar la colección $\cB$ formada por los conjuntos de la forma $B_n = \{i \mid i \geq n\}$, con $n\geq 1$. Por ejemplo, $B_1 = \{1,2,3,\ldots\}$, $B_2 = \{2,3,4,\ldots\}$, $B_{10} = \{10,11,12,\ldots\}$. Se tiene que $\cB$ es una base de filtro, pues cualquier $B_n$ no es vacío (contiene algún elemento), y la intersección finita de elementos de $\cB$ es de nuevo un elemento de $\cB$ (se aprecia que la intersección (infinita) de todos los elementos de $\cB$ es el conjunto vacío, que no pertenece a la base). El filtro $\cF$ que genera esta base se forma simplemente añadiendo todos los superconjuntos posibles a los elementos de la base. Por ejemplo, $F = \{2,5,6,7,8,\ldots\}$ es un elemento de $\cF$, pero $F = \{1,3,5,7,\ldots\}$, formado por los impares, no lo es.
+        En los números enteros positivos $\Z^+$ se puede considerar la colección $\cB$ formada por los conjuntos de la forma $B_n = \{i \mid i \geq n\}$, con $n\geq 1$. Por ejemplo, $B_1 = \{1,2,3,\ldots\}$, $B_2 = \{2,3,4,\ldots\}$, $B_{10} = \{10,11,12,\ldots\}$. Se tiene que $\cB$ es una base de filtro, pues cualquier $B_n$ no es vacío, y la intersección finita de elementos de $\cB$ contiene a un elemento de $\cB$ (por otro lado, se aprecia que la intersección (infinita) de todos los elementos de $\cB$ es el conjunto vacío, que no pertenece a la base). El filtro $\cF$ que genera esta base se forma simplemente añadiendo todos los superconjuntos posibles a los elementos de la base. Por ejemplo, $F = \{2,5,6,7,8,\ldots\}$ es un elemento de $\cF$, pero $F = \{1,3,5,7,\ldots\}$, formado por los impares, no lo es. Se aprecia, al igual que con una topología, que un filtro puede llegar a ser un conjunto extremadamente grande y complejo, de ahí la necesidad de operar usualmente con su base, al igual que sucede con las topologías.
     \end{ej}
 
     Al igual que se ha hecho con las topologías definidas en un conjunto, se puede estudiar cuándo un filtro es más o menos {\it fino} que otro filtro mediante el uso de sus respectivas bases de filtro. Por ejemplo, en $\R$ con la topología usual y con la topología discreta, se definen sus sistemas de entornos en un punto $x$ (filtros de entornos en $x$), que llamaremos $\cF_{x,U}$ y $\cF_{x,D}$, respectivamente. Una base de entornos en $x$ (base de filtro en $x$) para cada topología es $\cA_x = \{(a,b)\mid a<x<b\}$, para la usual, y $\cB_x = \{\{x\}\}$, para la discreta. Es evidente que para cada $A\in\cA_x$ es $B=\{x\}\subset A$, y así se obtiene que $\cF_{x,U} \subset \cF_{x,D}$. Como cabía esperar, al ser la topología discreta más fina que la usual, su filtro de entornos en un punto es más fino que el de la topología usual. Este resultado se puede generalizar, obteniendo:
