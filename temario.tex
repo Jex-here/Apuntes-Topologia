@@ -55,7 +55,7 @@ A veces, probar que una colección de conjuntos es una base puede ser complicado
  Esta condición ayuda a reforzar la idea de que los elementos básicos están ``en todos lados'', o que sirven como bloques para construir la topología. Además, si ya se conociera una base $\cA$ de $\cT$, y se tratara de demostrar que otra colección $\cB$ es base, la condición anterior se puede simplificar tomando abiertos de la base $\cA$ en vez de abiertos arbitrarios $U$. En notación lógica se tiene:
     \[(\forall x \in X) (\forall A \in \cA \text{ con } x \in A) (\exists B\in \cB \text{ con } x \in B \subset A)\]
      
-\hypertarget{Base reales usual}{}
+
 \begin{ej}
     En los números reales, la colección $\cA = \{(a,b) \mid a,b \in \R \text{ con } a < b\}$ es una base para la topología usual. Otra base para esta topología es la formada por los intervalos con extremos racionales: $\cB = \{(p,q) \mid p,q \in \Q \text{ con } p < q\}$. Para comprobar que efectivamente es una base, nos valemos del último resultado: para cada $x \in \R$ y $A = (a,b) \in \cA$ con $a < x < b$, como entre dos números reales cualesquiera existen números racionales, se tiene que $ a < p < x < q < b$, con $p,q \in \Q$. Así, existe un elemento $B = (p,q) \in \cB$ con $x \in B \subset A$ y se concluye que $\cB$ también es base.
 \end{ej}
@@ -69,20 +69,20 @@ Se puede simplificar aún más cómo se presenta una topología mediante el conc
 Se aprecia que la unión de los elementos de la subbase debe ser el espacio total $X$, pues si no, habría algún elemento $x\in X$ sin que ningún elemento básico de $\cT$ lo contuviera, contra la caracterización dada de elemento básico.
 
 \begin{ejs}
-    \item En los números reales, la colección de haces $\cS = \{(-\infty,b) \mid b \in \R\} \cup \{(a, \infty) \mid a \in \R\}$ es una subbase para la topología usual. Se aprecia que la intersección de dos elementos cualesquiera de $\cS$ es de nuevo, o un haz, o el vacío, o un intervalo $(a,b)$. Así, se puede formar una nueva base de la topología usual tomando estas intersecciones.
+    \item En los números reales, la colección de rayos $\cS = \{(-\infty,b) \mid b \in \R\} \cup \{(a, \infty) \mid a \in \R\}$ es una subbase para la topología usual. Se aprecia que la intersección de dos elementos cualesquiera de $\cS$ es de nuevo o un rayo, o el vacío, o un intervalo $(a,b)$. Así, se puede formar una nueva base de la topología usual tomando estas intersecciones.
     \item En $\R$ se puede generar la topología discreta mediante la subbase $\cS = \{[a,b] \mid a,b \in \R \text{ con } a < b\}$, pues se aprecia que la intersección de dos elementos $[a,b]$ y $[b,c]$ da como resultado $\{b\}$, obteniéndose que los conjuntos unipuntuales son abiertos (elementos de la base generada por $\cS$).
 \end{ejs}
 
 \begin{ex}
     En el conjunto \(\R\) de los números reales, definimos \(\cT\) como la topología definida por la subbase \[\cS = \{[a,b] \mid a, b \in \Q, a < b\}.\]
-    Encontrar una base de \((\R,\cT)\) y estudiar si \(\cT_u \subset \cT\)
+    Encontrar una base de \((\R,\cT)\) y estudiar si \(\cT_u \subset \cT\).
 \end{ex}
 
 \phantomsection
 \subsection*{Segundo axioma de numerabilidad}
 \addcontentsline{toc}{section}{Segundo axioma de numerabilidad}
 
-Que un espacio topológico satisfaga el {\bf segundo axioma de numerabilidad} ({\bf 2AN}) significa que este contenga una base numerable. Ya sabemos cómo comprobar que cierta colección sea base de una topología, así que nos queda estudiar la numerabilidad.
+Que un espacio topológico satisfaga el {\bf segundo axioma de numerabilidad} ({\bf 2AN}) significa que este contiene una base numerable. Ya sabemos cómo comprobar que cierta colección sea base de una topología, así que nos queda estudiar la numerabilidad.
 
 \begin{deff}
     Un conjunto es {\bf numerable} si es finito o es infinito numerable.
@@ -180,13 +180,15 @@ La demostración de que un espacio topológico no es 2AN se puede abordar median
         \end{enumerate}
 
         \item Hemos de probar que si $x \neq y$, entonces $B_x \neq B_y$. Si $x \neq y$, se puede suponer $x < y$, y es $A_x = [x,x + 1)$ y $A_y = [y,y + 1)$, con $x\in B_x \subset A_x$ e $y\in B_y \subset A_y$. Sin embargo, $x$ no puede pertenecer a ningún subconjunto de $A_y$ por ser $x < y$, por lo que $B_y \not\ni x$, y por lo tanto $B_x \neq B_y$. 
-        \item Sabemos de antemano que $\cC$ no es numerable, pues lo hemos construido mediante una aplicación inyectiva $f\colon \{A_x\}_{x\in \R} \to \cC\colon A_x \mapsto B_x$, y $\{A_x\}_{x\in \R}$ es no numerable pues $f'\colon \R \to \{A_x\}_{x\in \R} \colon x \mapsto [x,x+1)$ es una función inyectiva con dominio no numerable.
+        \item Sabemos de antemano que $\cC$ no es numerable, pues la hemos construido mediante una aplicación inyectiva $f\colon \{A_x\}_{x\in \R} \to \cC\colon A_x \mapsto B_x$, y $\{A_x\}_{x\in \R}$ es no numerable pues $f'\colon \R \to \{A_x\}_{x\in \R} \colon x \mapsto [x,x+1)$ es una función inyectiva con dominio no numerable.
         \item Como toda base $\cB$ de $\cT$ contiene una subcolección $\cC$ no numerable, se concluye que toda base es no numerable, y por consiguiente, $(\R, \cT)$ no es 2AN.
     \end{enumerate}
 
     \underline{Comentarios}: 
     \begin{enumerate}[topsep=5pt,label=--]
-        \item La elección de los $A_x$ de la forma $[x,x+1)$ es uno de los pasos clave. Si se hubieran tomado como $A_x$ abiertos de la forma $[x-\varepsilon, x + 1)$, no se podría asegurar que $B_x \neq B_y$, pues tomando $y = x + \delta$, con $0 < \delta < \varepsilon$, se puede elegir $B = [x, x+1) \in\cB$, el cual satisface $x\in B \subset A_x$ e $y\in B \subset A_y$, y de esta manera, no se puede asegurar que $\cC$ vaya a ser no numerable, pues la función $f$ que asigna cada $A_x$ con un $B_x$ no sería inyectiva, pues un elemento $B\in\cC$ pasaría a ser imagen de distintos $A_x$.
+        \item La elección de los $A_x$ de la forma $[x,x+1)$ es uno de los pasos clave. Si se hubieran tomado como $A_x$ abiertos de la forma $[x-\varepsilon, x + 1)$, no se podría asegurar que $B_x \neq B_y$, pues tomando $y = x + \delta$, con $0 < \delta < \varepsilon$, %
+        %min{\varepsilon,1}, no lo pongo para no complicar, aunque quizás es obvio
+        se puede elegir $B = [x, x+1) \in\cB$, el cual satisface $x\in B \subset A_x$ e $y\in B \subset A_y$, y de esta manera, no se puede asegurar que $\cC$ vaya a ser no numerable, pues la función $f$ que asigna cada $A_x$ con un $B_x$ no sería inyectiva, pues un elemento $B\in\cC$ pasaría a ser imagen de distintos $A_x$.
         \begin{center}
             \begin{tikzpicture}[scale=1.5, thick]
                 % Recta principal
@@ -242,7 +244,7 @@ La demostración de que un espacio topológico no es 2AN se puede abordar median
                 \node[red, below=3pt] at ({(\x+\xone)/2}, -1.05) {$B = [x, x+1)$};
             \end{tikzpicture}
             \end{center}
-        \item La caracterización de base utilizada dice que para cada $x,y$, con $x \neq y$ existen $B_x$ y $B_y$ con $x\in B_x$ e $y\in B_y$, pero no se menciona que dichos elementos básicos deban ser distintos, como se ha visto en el apartado anterior. Es por esto que hay que estudiar la ``no repetición'' de elementos de $\cC$, la cual se consigue mediante una elección adecuada de los abiertos $A_x$.
+        \item La caracterización de base utilizada dice que para cada $x,y$, con $x \neq y$, existen $B_x$ y $B_y$ con $x\in B_x$ e $y\in B_y$, pero no se menciona que dichos elementos básicos deban ser distintos, como se ha visto en el apartado anterior. Es por esto que hay que estudiar la ``no repetición'' de elementos de $\cC$, la cual se consigue mediante una elección adecuada de los abiertos $A_x$.
     \end{enumerate}
 \end{ej}
 
@@ -364,6 +366,7 @@ La demostración de que un espacio topológico no es 2AN se puede abordar median
 \subsection*{Entornos en un espacio topológico}
 \addcontentsline{toc}{section}{Entornos en un espacio topológico}
 
+\hypertarget{sec:entornos}{}
 Dado un espacio topológico $(X,\cT)$, se pueden considerar los elementos de la topología (abiertos $U_x\in\cT$) que contienen a un punto $x\in X$. A su vez, también se pueden considerar los subconjuntos de $X$ que contienen a dichos abiertos $U_x$.
 
 \begin{deff}
@@ -403,14 +406,14 @@ Que un espacio topológico $(X,\cT)$ satisfaga el {\bf primer axioma de numerabi
 
 \begin{ej}
     {\bf (Topología usual de $\R$)} 
-    \item El espacio topológico $\topusu$ es 1AN: la colección $\cA_x = \{(x-q,x+q) \mid q \in \Q^+\}$ es una base de entornos numerable para el punto arbitrario $x\in \R$. Sabemos que es base de entornos de $x$ pues todo entorno $E$ de $x$ debe contener a algún abierto $U_x$ que contenga a $x$, el cual contiene a su vez a un elemento básico $B_x = (x-q,x+q)$, $q \in \Q^+$ \hyperlink{Base reales usual}{ $^*$}. Para estudiar la numerabilidad de cada una de estas bases de entornos basta con encontrar una función inyectiva $g_x$ de $\cA_x$ a un conjunto numerable. Sea por lo tanto la función $g_x$ definida como
+    \item El espacio topológico $\topusu$ es 1AN: la colección $\cA_x = \{(x-q,x+q) \mid q \in \Q^+\}$ es una base de entornos numerable para el punto arbitrario $x\in \R$. Sabemos que es base de entornos de $x$ pues todo entorno $E$ de $x$ debe contener a algún abierto $U_x$ que contenga a $x$, el cual contiene a su vez a un elemento básico $B_x = (x-q,x+q)$, $q \in \Q^+$. Para estudiar la numerabilidad de cada una de estas bases de entornos basta con encontrar una función inyectiva $g_x$ de $\cA_x$ a un conjunto numerable. Sea por lo tanto la función $g_x$ definida como
     \[
     \begin{array}{rcl}
         g_x \colon & \cA_x  & \longrightarrow \Q\\
                 & (x-q,x+q) & \longmapsto     q
     \end{array}
     \]
-    La función $g_x$ está bien definida, pues asigna a cada elemento $(x-q,x+q)\in\cA_x$ el elemento $q\in\Q$; y es inyectiva, pues tomando $p\neq q$, se tiene $(x-p,x+p) \neq (x-q,x+q)$. Como se ha demostrado que todo punto $x\in\R$ tiene una base de entornos $\cA_x$ numerable, se concluye que $\topusu$ es 1AN.
+    La función $g_x$ está bien definida, pues asigna a cada elemento $(x-q,x+q)\in\cA_x$ el elemento $q\in\Q$; y es inyectiva, pues si $p = q$, se tiene $(x-p,x+p) = (x-q,x+q)$. Como se ha demostrado que todo punto $x\in\R$ tiene una base de entornos $\cA_x$ numerable, se concluye que $\topusu$ es 1AN.
 
     \medskip
 
@@ -455,7 +458,7 @@ A diferencia de la demostración de que un espacio topológico no es 2AN mediant
 
     \begin{enumerate}[itemsep=0pt, topsep=0pt, label=--]
         \item Como no parece que haya puntos destacados, tomemos arbitrariamente $0\in\R$ y supongamos que existe una base de entornos numerable en $0$, que llamaremos $\cA$.
-        \item Nuestro objetivo es demostrar que $\cA$ no es base de entornos de $0$, es decir, que existe un entorno $E$ de $0$, verificándose $A\not\subset E$, para todo $A\in\cA$. Para ello es suficiente con que exista algún elemento $y\in\R$ tal que $y\in A$ para cada $A\in\cA$ y que $y\notin E$. Debemos por lo tanto escoger un entorno $E$ de manera que no contenga a dicho elemento. ¿Cómo podemos hacer esto, si $\cA$ es arbitraria? ¿Si no se sabe qué elementos tiene? Pues haciendo uso de que es numerable.\warning%No he supuesto que pueda ser finito
+        \item Nuestro objetivo es demostrar que $\cA$ no es base de entornos de $0$, es decir, que existe un entorno $E$ de $0$, verificándose $A\not\subset E$, para todo $A\in\cA$. Para ello es suficiente con que exista algún elemento $y\in\R$ tal que $y\in A$ para cada $A\in\cA$ y que $y\notin E$. Debemos por lo tanto escoger un entorno $E$ de manera que no contenga a dicho elemento. ¿Cómo podemos hacer esto, si $\cA$ es arbitraria? ¿Si no se sabe qué elementos tiene? Pues haciendo uso de que es numerable.
         \item Para ello, construyamos $\cA$. Por ser numerable, los elementos de $\cA$ se pueden ordenar de la forma
         \vspace{-1em}
         \begin{align*}
@@ -465,7 +468,7 @@ A diferencia de la demostración de que un espacio topológico no es 2AN mediant
             A_{K_n} = & \ \R - K_n\\
             \vdots&
         \end{align*}
-        donde $n\in\N$, y cada $K_n$ es finito y no contiene al $0$.
+        donde $n\in\N$, y cada $K_n$ es finito y no contiene al $0$ (si $\cA$ fuera finita, simplemente se repite su último elemento indefinidamente para que la expresión tenga sentido).
         \item Queremos encontrar un elemento $y$ que esté en cada $A_{K_n}$. Para ello, tomamos la intersección $A = \bigcap\limits_{n\in\N} A_{K_n} = \R - \bigcup\limits_{n\in\N}K_n$, obteniendo la resta entre un conjunto no numerable y una unión numerable de conjuntos numerables, y es por lo tanto $A$ no numerable. Sea $y\in A - \{0\}$, que existe por ser no numerable, y sea $E = \R - \{y\}$. Se tiene que $E$ es entorno de $0$, sin embargo, ningún elemento $A_{K_n}\in\cA$ está contenido en $E$ pues $y$ pertenece a cada $A_{K_n}$ de $\cA$, pero $y$ no está en $E$.
         \item De esta forma, hemos llegado a la contradicción de que $\cA$ no es una base de entornos de $0$ tras suponer que $\cA$ es numerable, por lo que ha de ser no numerable, y se concluye que $(\R, \cT)$ no es 1AN.
     \end{enumerate}
@@ -534,14 +537,14 @@ Al conjunto de todos los puntos interiores de $M$ se le llama \textit{interior} 
 Al conjunto de todos los puntos exteriores de $M$ se le llama \textit{exterior} de $M$ y se denotará por \underline{$\exterior{M}$}.
 
 \begin{deff}
-    $x$ es un punto \textbf{frontera} de $M$ si todo entorno de $x$ intersecta tanto a $M$ como a $X - M$.
+    $x$ es un punto \textbf{frontera} de $M$ si todo entorno de $x$ interseca tanto a $M$ como a $X - M$.
 \end{deff}
 Al conjunto de todos los puntos frontera de $M$ se le llama \textit{frontera} de $M$ y se denotará por \underline{$\frontera{M}$}.
 
 \begin{ejs}\label{ej:11}
     \item Sea $(\R, \cT)$ con $\cT$ la topología trivial y el conjunto $M = [0,1)\cup \{2\}\subset \R$. Se tiene que 
     \begin{center}
-        $\interior{M} = \emptyset;\quad \frontera{M} = \R;\quad \exterior{M} = \emptyset$
+        $\interior{M} = \emptyset;\quad \frontera{M} = \R;\quad \exterior{M} = \emptyset$.
     \end{center}
     \item Sea $\topusu$ y el conjunto $M = [0,1)\cup \{2\}\subset \R$. Se tiene que 
     \begin{center}
@@ -553,7 +556,7 @@ Al conjunto de todos los puntos frontera de $M$ se le llama \textit{frontera} de
     \end{center}
     \item Sea $(\R,\cT)$ con $\cT$ la topología discreta y el conjunto $M = [0,1)\cup \{2\}\subset \R$. Se tiene que 
     \begin{center}
-        $\interior{M} = [0,1)\cup \{2\};\quad \frontera{M} = \emptyset;\quad \exterior{M} = \R - ([0,1)\cup \{2\})$
+        $\interior{M} = [0,1)\cup \{2\};\quad \frontera{M} = \emptyset;\quad \exterior{M} = \R - ([0,1)\cup \{2\})$.
     \end{center}    
 \end{ejs}
 
@@ -568,8 +571,9 @@ Aplicando las definiciones se pueden deducir las siguientes caracterizaciones:
 \end{prop}
 De aquí se obtiene que $M$ es abierto si y solo si $M = \interior{M}$ y que $M$ es cerrado si y solo si $M = \interior{M} \cup \frontera{M}$. A esta última unión se le llama adherencia de $M$.
 
+\hypertarget{def:punto_adherencia}{}
 \begin{deff}
-    $x$ es un punto \textbf{adherente} a $M$ si todo entorno de $x$ intersecta a $M$.
+    $x$ es un punto \textbf{adherente} a $M$ si todo entorno de $x$ interseca a $M$.
 \end{deff}
 Al conjunto de todos los puntos adherentes a $M$ se le llama \textit{adherencia} de $M$ y se denota por $\overline{M}$ o por $\operatorname{adh}(M)$. Tal como hemos comentado, se tiene que $\overline{M} = \interior{M} \cup \frontera{M}$, y es por lo tanto $M$ cerrado si y solo si $M = \overline{M}$.
 
@@ -594,12 +598,12 @@ Al conjunto de todos los puntos adherentes a $M$ se le llama \textit{adherencia}
 En un espacio topológico $(X,\cT)$, los puntos de adherencia de un conjunto $M$ se pueden clasificar según sean puntos de acumulación o puntos aislados.
 
 \begin{deff}
-    $x\in X$ es un {\bf punto de acumulación} de $M$ si todo entorno de $x$ intersecta a $M$ en un punto distinto a $x$:
+    $x\in X$ es un {\bf punto de acumulación} de $M$ si todo entorno de $x$ interseca a $M$ en un punto distinto a $x$:
     \[\text{Para cada entorno de } x, \ U_x, \text{ se tiene } (U_x -\{x\}) \cap M \neq \emptyset \]
 \end{deff}
 
 \begin{deff}
-    $x\in M$ es un {\bf punto aislado} de $M$ si existe un entorno de $x$ que no intersecta a $M$ en un punto distinto a $x$:
+    $x\in M$ es un {\bf punto aislado} de $M$ si existe un entorno de $x$ que no interseca a $M$ en un punto distinto a $x$:
     \[\text{Existe un entorno de } x, \ U_x, \text{ tal que } (U_x -\{x\}) \cap M = \emptyset \]
 \end{deff}
 
@@ -642,12 +646,12 @@ Veamos varios ejemplos para profundizar los conceptos:
     \item {\bf  $(\R, \cT)$ es separable con la topología de Sorgenfrey}\\
     En $\R$, el prototipo de subconjunto numerable es $\Q$, por lo que veamos si este es denso con esta topología. La forma más simple de demostrar que es separable suele ser usar la caracterización de conjunto denso. Veamos cómo:
     
-    Sea $U$ un abierto no vacío. Por ser abierto, existe un elemento básico $B\in\cB$ de la forma $B = [a,b)$, contenido en $U$. Pero entre dos elemento $a,b\in\R$ existe un $q\in\Q$ con $a<q<b$, y por lo tanto $q \in B \subset U$. De esta manera, se ha probado que todo abierto no vacío $U$ contiene elementos de $\Q$ (su intersección no es vacía), y se concluye que $\Q$ es denso en $\R$ con la topología de Sorgenfrey.
+    Sea $U$ un abierto no vacío. Por ser abierto, existe un elemento básico $B\in\cB$ de la forma $B = [a,b)$, contenido en $U$. Pero entre dos elementos $a,b\in\R$ existe un $q\in\Q$ con $a<q<b$, y por lo tanto $q \in B \subset U$. De esta manera, se ha probado que todo abierto no vacío $U$ contiene elementos de $\Q$ (su intersección no es vacía), y se concluye que $\Q$ es denso en $\R$ con la topología de Sorgenfrey.
 
     \item {\bf  $(\R, \cT)$ no es separable con la topología discreta}\\
     Al igual que para demostrar que un espacio topológico no es 2AN probando que cualquier base del espacio no es numerable, la no separabilidad se demuestra probando que cualquier conjunto que sea denso no es numerable.
 
-    Empecemos primero construyendo un subconjunto que sea denso. Sea $M = \{x\}$, con $x\in\R$. Se tiene que $M$ es cerrado, por lo que $\overline{M} = M$. Si en vez de tomar $M = \{x\}$ tomamos $M$ como cualquier subconjunto de $\R$, se tendrá que sigue siendo cerrado por ser su complementario abierto, y es $\overline{M} = M$. De esta forma llegamos a la conclusión de que el único subconjunto denso es el propio $\R$, pues es el único que verificará $\overline{\R} = \R$.
+    Empecemos construyendo un subconjunto que sea denso. Sea $M = \{x\}$, con $x\in\R$. Se tiene que $M$ es cerrado, por lo que $\overline{M} = M$. Si en vez de tomar $M = \{x\}$ tomamos $M$ como cualquier subconjunto de $\R$, se tendrá que sigue siendo cerrado por ser su complementario abierto, y es $\overline{M} = M$. De esta forma llegamos a la conclusión de que el único subconjunto denso es el propio $\R$, pues es el único que verificará $\overline{\R} = \R$, y como $\R$ no es numerable, $(\R, \cT)$ no es separable.
 \end{ejs}
 
 
@@ -663,13 +667,13 @@ Veamos varios ejemplos para profundizar los conceptos:
 
     \bigskip
 
-    {\b Solución:}
+    {\bf Solución:}
 
     De nuevo, si no supiéramos cómo abordar la demostración, si tirar hacia demostrar que es separable o si tirar hacia que no es separable, primero estudiemos cómo son los abiertos, luego tomemos algún conjunto numerable y estudiemos los entornos de sus puntos y así vamos entendiendo hacia dónde pueden ir los tiros.
 
     En este caso, se tiene que los abiertos son $\R$ menos un conjunto finito, por lo que tomando un conjunto infinito numerable $M$, cualquier abierto que se tome deberá contener puntos de $M$. Expresándolo de manera formal:
 
-    Sea $U = \R - K$, con $K$ finito, un abierto no vacío y sea $\Z\subset\R$. Se tiene que entonces que $U\cap\Z = \Z - K \neq \emptyset$. Al ser $\Z$ numerable y denso, se concluye que $(\R, \cT)$ es separable.
+    Sea $U = \R - K$, con $K$ finito, un abierto no vacío y sea $\Z\subset\R$. Se tiene entonces que $U\cap\Z = \Z - K \neq \emptyset$. Al ser $\Z$ numerable y denso, se concluye que $(\R, \cT)$ es separable.
 \end{ex}
 
 \begin{ex}
@@ -683,7 +687,7 @@ Veamos varios ejemplos para profundizar los conceptos:
 
     {\bf Solución:}
 
-    El truco utilizado en el anterior ejercicio no va a funcionar aquí, pues al ser $U = \R - K$, con $K$ un conjunto numerable arbitrario, no se puede elegir un máximo, pues puede no existir. Estudiemos entonces cómo son los conjuntos numerables respecto a la topología. Si tomamos $M$ numerable, se tiene que $U = \R - M$ es abierto, obteniendo que $M$ es cerrado, por lo que ha de ser $\overline{M} = M$. De esta forma podemos concluir que para todo subconjunto numerable de $\R$, su adherencia es él mismo, distinto de $\R$, y así no existen subconjuntos numerables y densos, por lo que $(\R, \cT)$ no es separable.
+    Si lo intentáramos resolver de la misma manera que el ejercicio anterior, tomando $U = \R - K$, con $K$ un conjunto numerable arbitrario, podría no obtenerse $U\cap\Z = \Z - K \neq \emptyset$, pues tomando $K = \Z$ es $\Z - K = \emptyset$. Estudiemos entonces cómo son los conjuntos numerables respecto a la topología. Si tomamos $M$ numerable, se tiene que $U = \R - M$ es abierto, obteniendo que $M$ es cerrado, por lo que ha de ser $\overline{M} = M$. De esta forma podemos concluir que para todo subconjunto numerable de $\R$, su adherencia es él mismo, distinto de $\R$, y así no existen subconjuntos numerables y densos, por lo que $(\R, \cT)$ no es separable.
 \end{ex}
 
 \begin{ex}
@@ -694,9 +698,6 @@ Veamos varios ejemplos para profundizar los conceptos:
     Estudiar si \((\mathbb{R}, \cT)\) es separable.
 \end{ex}
 
-\phantomsection
-\addcontentsline{toc}{section}{Ampliación}
-
 \begin{ex}
     En el conjunto \(\R\) de los números reales, definimos \(\cT\) como la topología definida por la subbase 
     \[
@@ -705,6 +706,8 @@ Veamos varios ejemplos para profundizar los conceptos:
     Estudiar si \((\R,\cT)\) es separable.
 \end{ex}
 
+\phantomsection
+\addcontentsline{toc}{section}{Ampliación}
 
 \begin{amp}
     Veamos varios conceptos relacionados con lo estudiado hasta ahora para profundizar en su entendimiento. Empecemos con la relación existente entre las distintas topologías que existen en un conjunto.
@@ -719,22 +722,26 @@ Veamos varios ejemplos para profundizar los conceptos:
         \]
         donde $\cB_1\subset\cT_1$ y $\cB_2\subset\cT_2$ son bases. Por ejemplo, podemos así ver que la topología de Sorgenfrey es más fina que la topología usual de $\R$, pues es trivial encontrar un elemento básico $[c,d)$ en uno $(a,b)$ que contengan a un punto $x$. Por otro lado, se comprueba que la topología usual \textit{no} es más fina que la de Sorgenfrey, pues dado un elemento básico $[a,b)$ que contiene a $x = a$, no existe ningún elemento básico de la usual que contenga a $x$ y que esté contenido en $[a,b)$.
     \end{ej}
-    Aunque pueda parecer extraño estudiar de nuevo si una topología $\cT_1$ es más fina que otra, $\cT_2$, habiendo estudiado ya que $\cT_1 \subset \cT_2$, puede darse el caso de que se cumpla que $\cT_1 \subset \cT_2$ y $\cT_2 \subset \cT_1$ cuando ambas topologías sean de hecho, la misma. Al definir usualmente las topologías mediante bases, puede darse el caso de que bases que parezcan que generan distintas topologías generen de hecho la misma. Es el caso de definir la topología usual mediante abiertos racionales o abiertos reales.
+    Aunque pueda parecer extraño estudiar de nuevo si una topología $\cT_1$ es más fina que otra, $\cT_2$, habiendo estudiado ya que $\cT_1 \subset \cT_2$, puede darse el caso de que se cumpla que $\cT_1 \subset \cT_2$ y $\cT_2 \subset \cT_1$ cuando ambas topologías sean, de hecho, la misma. Al definir usualmente las topologías mediante bases, puede darse el caso de que bases que parezcan que generan distintas topologías generen de hecho la misma. Es el caso de definir la topología usual mediante abiertos racionales o abiertos reales.
 
     \bigskip
 
-    Estudiemos ahora las propiedades que cumplen los entornos en un punto. Dado un punto $x\in X$, la colección $\cE_x$ de todos los entornos de $x$ la llamaremos {\bf sistema de entornos de \textit{x}}. Es evidente que al ser $x\in E$ para todo $E\in\cE_x$, cada elemento de la colección no es vacío. Por otro lado, la intersección de dos entornos cualesquiera es de nuevo un entorno, pues ambos contendrán abiertos que contengan a $x$, cuya intersección será de nuevo un abierto que contenga a $x$, y es por lo tanto la intersección de entornos un subconjunto que contiene un abierto que contiene a $x$. Con este razonamiento, llegamos a la conclusión de que la intersección finita de entornos es de nuevo un entorno. Por último, aunque sea trivial por definición, otra propiedad de los entornos es que todo subconjunto de $X$ que contenga a un entorno $E$ de $x$ es a su vez un entorno de $x$. A esta última propiedad se le suele denominar ser cerrado bajo superconjunto.
+    Estudiemos ahora las propiedades que cumplen los entornos en un punto, introducidos \hyperlink{sec:entornos}{aquí}. Dado un punto $x\in X$, la colección $\cE_x$ de todos los entornos de $x$ la llamaremos {\bf sistema de entornos de \textit{x}}. Es evidente que al ser $x\in E$ para todo $E\in\cE_x$, \textit{cada elemento de la colección no es vacío}. Por otro lado, la intersección de dos entornos cualesquiera es de nuevo un entorno, pues ambos contendrán abiertos que contengan a $x$, cuya intersección será de nuevo un abierto que contenga a $x$, y es por lo tanto la intersección de entornos un subconjunto que contiene un abierto que contiene a $x$. Con este razonamiento, llegamos a la conclusión de que \textit{la intersección finita de entornos es de nuevo un entorno}. Por último, aunque sea trivial por definición, otra propiedad de los entornos es que \textit{todo subconjunto de $X$ que contenga a un entorno $E$ de $x$ es a su vez un entorno de $x$}. A esta última propiedad se le suele denominar ser cerrado bajo superconjuntos.
 
     Estas propiedades se pueden generalizar para conjuntos arbitrarios, resultando en una estructura llamada \textit{filtro}, la cual generaliza nociones como los entornos o las sucesiones (que veremos más adelante). En el caso anterior se obtuvo el filtro de entornos en un punto. Así, se puede expresar la definición de filtro como:
 
     \begin{deff}
-        Dado un conjunto $X$, un {\bf filtro} $\cF$ sobre $X$ es una colección de subconjuntos de $X$ verificando los siguientes axiomas:
+        Dado un conjunto $X$, un {\bf filtro} $\cF$ sobre $X$ es una colección no vacía de subconjuntos de $X$ verificando los siguientes axiomas:
         \begin{enumerate}[leftmargin=15pt,itemsep=0pt, topsep=5pt]
             \item $\emptyset \notin \cF$.
             \item La intersección {\it finita} de elementos del filtro es un elemento del filtro.
             \item Es cerrado bajo superconjuntos.
     \end{enumerate}
     \end{deff}
+
+    \begin{ej}
+        Tomando como espacio $X = \{1,2,3\}$, la colección $\cF_1 = \{\{1\}, \{1,2\}\}$ no es un filtro pues existen subconjuntos de $X$, véase $\{1,3\}$ y $\{1,2,3\}$, que contienen a elementos de $\cF_1$ y que no pertenecen al filtro. Añadiendo estos conjuntos, se obtiene el filtro $\cF_1 = \{\{1\}, \{1,2\},\{1,3\},\{1,2,3\}\}$.
+    \end{ej}
 
     De igual forma que al definir una topología, un filtro suele ser una familia \textit{muy grande} y desordenada. La forma más conveniente de definirlos es mediante {\it bases de filtro}. 
 
@@ -752,12 +759,12 @@ Veamos varios ejemplos para profundizar los conceptos:
 
     Otra caracterización equivalente de base de filtro es la siguiente:
     \begin{prop}
-        $\cB$ es una base de filtro del filtro $\cF$ si y solo si para cada $F\in \cF$ existe un elemento de la base $B\in\cB$ tal que $B\subset F$.
+        $\cB\subset\cF$ es una base de filtro de $\cF$ si y solo si para cada $F\in \cF$ existe un elemento de la base $B\in\cB$ tal que $B\subset F$.
     \end{prop}    
     Ahora podemos ver claramente que la definición de base de entornos en un punto no es más que la base de filtro de entornos en dicho punto (\hyperlink{def:base_de_entornos}{ver la definición de base de entornos en un punto}).
 
     \begin{ej}
-        En los números enteros positivos $\Z^+$ se puede considerar la colección $\cB$ formada por los conjuntos de la forma $B_n = \{i \mid i \geq n\}$, con $n\geq 1$. Por ejemplo, $B_1 = \{1,2,3,\ldots\}$, $B_2 = \{2,3,4,\ldots\}$, $B_{10} = \{10,11,12,\ldots\}$. Se tiene que $\cB$ es una base de filtro, pues cualquier $B_n$ no es vacío, y la intersección finita de elementos de $\cB$ contiene a un elemento de $\cB$ (por otro lado, se aprecia que la intersección (infinita) de todos los elementos de $\cB$ es el conjunto vacío, que no pertenece a la base). El filtro $\cF$ que genera esta base se forma simplemente añadiendo todos los superconjuntos posibles a los elementos de la base. Por ejemplo, $F = \{2,5,6,7,8,\ldots\}$ es un elemento de $\cF$, pero $F = \{1,3,5,7,\ldots\}$, formado por los impares, no lo es. Se aprecia, al igual que con una topología, que un filtro puede llegar a ser un conjunto extremadamente grande y complejo, de ahí la necesidad de operar usualmente con su base, al igual que sucede con las topologías.
+        En los números enteros positivos, $\N$, se puede considerar la colección $\cB$ formada por los conjuntos de la forma $B_n = \{i \mid i \geq n\}$, con $n\geq 1$. Por ejemplo, $B_1 = \{1,2,3,\ldots\}$, $B_2 = \{2,3,4,\ldots\}$, $B_{10} = \{10,11,12,\ldots\}$. Se tiene que $\cB$ es una base de filtro, pues cualquier $B_n$ no es vacío, y la intersección finita de elementos de $\cB$ contiene a un elemento de $\cB$ (por otro lado, se aprecia que la intersección (infinita) de todos los elementos de $\cB$ es el conjunto vacío, que no pertenece a la base). El filtro $\cF$ que genera esta base se forma simplemente añadiendo todos los superconjuntos posibles a los elementos de la base. Por ejemplo, $F = \{2,5,6,7,8,\ldots\}$ es un elemento de $\cF$, pero $F = \{1,3,5,7,\ldots\}$, formado por los impares, no lo es. Se aprecia, al igual que con una topología, que un filtro puede llegar a ser un conjunto extremadamente grande y complejo, de ahí la necesidad de operar usualmente con su base, al igual que sucede con las topologías.
     \end{ej}
 
     Al igual que se ha hecho con las topologías definidas en un conjunto, se puede estudiar cuándo un filtro es más o menos {\it fino} que otro filtro mediante el uso de sus respectivas bases de filtro. Por ejemplo, en $\R$ con la topología usual y con la topología discreta, se definen sus sistemas de entornos en un punto $x$ (filtros de entornos en $x$), que llamaremos $\cF_{x,U}$ y $\cF_{x,D}$, respectivamente. Una base de entornos en $x$ (base de filtro en $x$) para cada topología es $\cA_x = \{(a,b)\mid a<x<b\}$, para la usual, y $\cB_x = \{\{x\}\}$, para la discreta. Es evidente que para cada $A\in\cA_x$ es $B=\{x\}\subset A$, y así se obtiene que $\cF_{x,U} \subset \cF_{x,D}$. Como cabía esperar, al ser la topología discreta más fina que la usual, su filtro de entornos en un punto es más fino que el de la topología usual. Este resultado se puede generalizar, obteniendo:
@@ -768,6 +775,14 @@ Veamos varios ejemplos para profundizar los conceptos:
         \]
     \end{prop}
 
+    \bigskip
+
+    Por último, profundicemos en el concepto de punto de adherencia, introducido \hyperlink{def:punto_adherencia}{aquí}. La adherencia generaliza el concepto de distancia. En un espacio métrico, una función distancia es una forma de medir cuán cerca o cuán lejos están los puntos del conjunto. En un espacio topológico, la forma de medir distancias es mediante abiertos, concretamente, mediante entornos abiertos en cada punto. Así, si para dos puntos $x,y\in X$, todo entorno abierto de $y$ contiene a $x$, $y$ es un punto de adherencia del conjunto unipuntual $\{x\}$, por lo cual $y$ está ``cerca'' de $x$. Podemos entonces considerar el caso de la topología trivial: al solo existir un abierto que contiene a todos los puntos, todos están cerca entre sí. Por otro lado, el concepto de ``cercanía'' no es simétrico en espacios topológicos:
+
+    \begin{ej}
+        Sea $X = \{x,y\}$ y $\cT = \{\emptyset, \{x\},\{x,y\}\}$ una topología definida en $X$. Se puede comprobar que $y$ es un punto de adherencia de $\{x\}$, pues el único entorno de $y$ es $\{x,y\}$, que corta a $\{x\}$. Por otro lado, $x$ no es punto de adherencia de $\{y\}$, pues existe un entorno de $x$, $\{x\}$, que no corta a $\{y\}$.
+    \end{ej}
+
 \end{amp}
 
 
@@ -777,33 +792,3 @@ Veamos varios ejemplos para profundizar los conceptos:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-% Una propiedad que cumple una base $\cB$ de una topología es que sus elementos básicos \tit{recubren} el espacio $X$, es decir $\bigcup B_i = X$, donde $B_i \in \cB$. A este tipo de colecciones se les llamas \tit{recubrimientos}.
-    % \begin{deff}
-    %     Sea $X$ un conjunto y $\cC$ una colección de subconjuntos de $X$. $cC$ es un {\bf recubrimiento} de $X$ si $\bigcup C_i = X$, con $C_i \in \cC$. En el caso en el que $\cC \subset \cT$, se dirá que $\cC$ es un recubrimiento abierto, pues todos sus elementos son abiertos.
-    % \end{deff}
-
-    % En el caso de la base, la ventaja es que los elementos que la componen son abiertos. Si además el espacio es 2AN, existirá una base numerable, y el recubrimiento será numerable. A este tipo de espacios se les llama {\it espacios de Lindelöf}.
-    % \begin{deff}
-    %     Un espacio topológico es {\bf Lindelöf} si puede ser recubierto por una cantidad numerable de abiertos.
-    % \end{deff}
-    % Ya se ha estudiado que $\R_l$, los reales con la topología de Sorgenfrey no es segundo contable, pero sí es separable. Veamos si es Lindelöf:
