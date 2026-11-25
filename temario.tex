@@ -777,7 +777,7 @@ Veamos varios ejemplos para profundizar los conceptos:
 
     \bigskip
 
-    Por último, profundicemos en el concepto de punto de adherencia, introducido \hyperlink{def:punto_adherencia}{aquí}. La adherencia generaliza el concepto de distancia. En un espacio métrico, una función distancia es una forma de medir cuán cerca o cuán lejos están los puntos del conjunto. En un espacio topológico, la forma de medir distancias es mediante abiertos, concretamente, mediante entornos abiertos en cada punto. Así, si para dos puntos $x,y\in X$, todo entorno abierto de $y$ contiene a $x$, $y$ es un punto de adherencia del conjunto unipuntual $\{x\}$, por lo cual $y$ está ``cerca'' de $x$. Podemos entonces considerar el caso de la topología trivial: al solo existir un abierto que contiene a todos los puntos, todos están cerca entre sí. Por otro lado, el concepto de ``cercanía'' no es simétrico en espacios topológicos:
+    Por último, profundicemos en el concepto de punto de adherencia, introducido \hyperlink{def:punto_adherencia}{aquí}. La adherencia generaliza el concepto de distancia. En un espacio métrico, una función distancia es una forma de medir cuán cerca o cuán lejos están los puntos del conjunto. En un espacio topológico, la forma de ``medir distancias'' es mediante abiertos, concretamente, se usarán entornos en un punto. Así, si para dos puntos $x,y\in X$, todo entorno de $y$ contiene a $x$, $y$ es un punto de adherencia del conjunto unipuntual $\{x\}$, por lo cual $y$ está ``cerca'' de $x$. Podemos entonces considerar el caso de la topología trivial: al solo existir un abierto que contiene a todos los puntos, todos están cerca entre sí; o el de la topología discreta: todos los puntos están ``lejos'', pues cada punto sólo es adherente a sí mismo. Por otro lado, el concepto de ``cercanía'' no implica simetría en espacios topológicos:
 
     \begin{ej}
         Sea $X = \{x,y\}$ y $\cT = \{\emptyset, \{x\},\{x,y\}\}$ una topología definida en $X$. Se puede comprobar que $y$ es un punto de adherencia de $\{x\}$, pues el único entorno de $y$ es $\{x,y\}$, que corta a $\{x\}$. Por otro lado, $x$ no es punto de adherencia de $\{y\}$, pues existe un entorno de $x$, $\{x\}$, que no corta a $\{y\}$.
@@ -787,8 +787,130 @@ Veamos varios ejemplos para profundizar los conceptos:
 
 
 \phantomsection
+\subsection*{Sucesiones}
 \addcontentsline{toc}{section}{Sucesiones}
 
+Una sucesión en un conjunto $X$ no es más que una función $f\colon\N \to X\colon n\mapsto a_n$, la cual se suele expresar explícitamente mediante sus imágenes: $(a_n) = (a_1, a_2, a_3\ldots)$. Por ejemplo, si $X = \R$, se pueden definir las sucesiones:
+\begin{enumerate}[label=--]
+    \item $(a_n) = \left(\frac1n\right) = \left(1, \frac12, \frac13,\ldots\right)$
+    \item $(b_n) = \left(2n\right) = \left(2, 4, 6,\ldots\right)$
+\end{enumerate}
+
+Las sucesiones nos van a servir para estudiar cómo ``acercarnos'' a ciertos elementos del conjunto. Por ejemplo, intuitivamente, parece que la sucesión $(a_n) = \left(\frac1n\right)$ se acerca a $0$ cuando $n$ crece hacia infinito. Sin embargo, como acabamos de ver al final de la sección de Ampliación, el concepto de cercanía lleva intrínseco una forma de poder medirla, que en espacios topológicos se realiza mediantes entornos. De esta manera definimos la noción de \textit{convergencia} o de \textit{punto límite}:
+
+\begin{deff}
+    $\seatop$ y sea $s = (a_n)$ una sucesión en $X$. Se dice que $s$ \textbf{converge} a $x$, o que $x$ es \textbf{punto límite} de $s$ si para cada entorno $U_x$ de $x$ existe un natural $m$ a partir del cual cada elemento $a_i$ de la sucesión con $i\geq m$ pertenece a $U_x$. Formalmente:
+    \[
+        s \text{ converge a } x \iff \forall U_x \ \exists m\text{ tal que } \forall i\geq m \text{ se satisface } \ a_i \in U_x.
+    \]
+\end{deff}
+
+Tal y como se ve en el siguiente dibujo, tomando cualquier entorno de $x$, la sucesión está contenida en dicho entorno a partir de algún elemento de la sucesión.
+
+\begin{center}
+    \definecolor{rojoPuntos}{RGB}{225, 30, 30}
+    \definecolor{azulEntorno}{RGB}{0, 165, 235}
+    \definecolor{naranjaEntorno}{RGB}{245, 125, 35}
+    \definecolor{azulX}{RGB}{50, 65, 195}
+
+    \begin{tikzpicture}[scale=0.9]
+        % Marco exterior (espacio X)
+        \draw[very thick, black] (0, 0) rectangle (14, 8);
+        \node[black, font=\Large] at (13.45, 7.5) {$X$};
+
+        % Entorno azul U_x
+        \draw[very thick, azulEntorno] (5.4, 3.4) rectangle (11.5, 7.0);
+        \node[azulEntorno, right] at (11.4, 3.45) {$U_x\colon \exists m = 5$};
+
+        % Entorno naranja V_x
+        \draw[very thick, naranjaEntorno] (8.9, 4.3) rectangle (11.1, 6.35);
+        \node[naranjaEntorno, right] at (11.4, 5.5) {$V_x\colon \exists m = 8$};
+
+        % Puntos de la sucesión a_1 ... a_8
+        \foreach \x/\y/\i in {
+            1.1/2.5/1,
+            1.8/4.2/2,
+            3.0/3.3/3,
+            4.8/6.15/4,
+            6.6/4.45/5,
+            7.6/5.5/6,
+            8.5/5.85/7,
+            9.25/5.55/8
+        }{
+            \fill[rojoPuntos] (\x, \y) circle (2.2pt);
+            \node[rojoPuntos, below=2pt] at (\x, \y) {$a_{\i}$};
+        }
+
+        % Tres puntos rojos sin etiqueta acercándose a x
+        \fill[rojoPuntos] (9.85, 5.95) circle (2.0pt);
+        \fill[rojoPuntos] (10.25, 5.92) circle (1.8pt);
+        \fill[rojoPuntos] (10.50, 5.82) circle (1.4pt);
+
+        % Punto límite x
+        \fill[azulX] (10.42, 5.62) circle (2.1pt);
+        \node[azulX, below=2pt] at (10.42, 5.62) {$x$};
+    \end{tikzpicture}
+\end{center}
+
+De esta manera, la convergencia o no convergencia de una sucesión dependerá de cómo sean los abiertos del conjunto $X$, es decir, de la topología que se defina en $X$. Veamos unos ejemplos:
+
+\begin{ej}
+    Sea la sucesión $s = \left(\frac1n\right)$ definida en el conjunto de los números reales $\R$.
+    \begin{itemize}[leftmargin=15pt]
+        \item Sea $\cT$ la topología trivial en $\R$. Se tiene entonces que $s$ converge a cualquier punto de $\R$, pues para todo entorno de $x\in\R$, su único entorno, $\R$, contiene a toda la sucesión, por lo que eligiendo $m = 1$ es suficiente. De igual manera, en la topología trivial, cualquier sucesión del conjunto converge a todos los elementos del conjunto.
+        \item Sea $\cT_u$ la topología usual en $\R$. Se tiene entonces que $s$ converge únicamente al $0$. Que converge a $0$ se prueba:
+        \begin{enumerate}[label=--]
+            \item Se toma un entorno arbitrario de $0$: $U_0$. Este contendrá a algún elemento de la base de entornos de $0$: $\cC_0 = \{(\frac1n,\frac1n) \mid n \in \N\}$, que será de la forma $(-\frac1k,\frac1k)$.
+            \item Para este entorno, $U_0$, elegimos $m = k + 1$.
+            \item De esta forma, los elementos de la sucesión a partir de $m = k + 1$ serán de la forma: $\left(\frac{1}{k+1},\frac{1}{k+2},\ldots\right)$, los cuales pertenecen a $U_0$, pues tomando $i\geq m = k + 1$, se tiene \[\frac1i \in (-\frac1k,\frac1k)\subset U_0.\]
+            Para demostrar que es único con las herramientas que tenemos, habrá que demostrar que para cualquier otro punto $x\neq 0$ existe un entorno de $x$, $U_x$, tal que para todo $m\in\N$ existe un $i\geq m$ satisfaciendo $a_i \notin U_x$. Se deja como ejercicio. Más adelante se verá que no hace falta realizar esta demostración argumentando que $(\R,\cT)$ es un espacio de Hausdorff.
+        \end{enumerate}
+        \item Sea $\cD$ la topología discreta en $\R$. Se tiene entonces que $s$ no converge a ningún elemento de $\R$. Veamos primero el caso para $x = 0$. Vemos que existe un entorno de $0$: $\{0\}$ de manera que sea cual sea el $m\in\N$ elegido, tomando $i=m$, se tiene $\frac1i\notin \{0\}$. De igual manera se prueba para cualquier otro $x\in\R$.
+    \end{itemize}
+\end{ej}
 
 
 
+\begin{ex}
+    Dado el conjunto \(\mathbb{R}\) de los números reales, se considera la topología \[\cT = \{\emptyset\} \cup \{G \subset \mathbb{R} \mid 0 \in G\}.\]
+    Determinar las sucesiones en \((\mathbb{R},\cT)\) que convergen a 1. ¿Es único dicho límite?
+\end{ex}
+
+\begin{ex}
+
+En \(\mathbb{R}\) se considera la topología \(\cT\) engendrada por la familia de subconjuntos
+    \[
+        F = \{(a, \infty) \mid a \in \mathbb{R}\}.
+    \]
+    \begin{enumerate}[label=\alph*)]
+        \item Estudiar si \((\mathbb{R}, \cT)\) es normal.
+        \item Caracterizar las sucesiones convergentes en \((\mathbb{R}, \cT)\).
+    \end{enumerate}
+\end{ex}
+
+\begin{ex}
+    En el conjunto \(N\) de los números naturales (se incluye el 0), definimos la topología \[\cT = \{A \subset N \mid \text{si } 2n + 1 \notin A \text{ entonces } 2n, 2n + 2 \notin A\}.\]
+    \item Estudiar si \((N,\cT)\) es \(\cT_2\).
+\end{ex}
+
+\begin{ex}
+    En el conjunto \(\mathbb{R}\) de los números reales, definimos la topología \(\cT\) mediante \(\cT = \{\emptyset\} \cup \{A \subset \mathbb{R} \mid \mathbb{R} - \mathbb{Q} \subset A\}\) donde \(\mathbb{Q}\) son los números racionales. Estudiar
+    \begin{enumerate}[label=\alph*)]
+        \item Si el espacio \((\mathbb{R}, \cT)\) es \(\cT_2\).
+        \item Si el espacio \((\mathbb{R}, \cT)\) es regular.
+    \end{enumerate}
+\end{ex}
+
+\begin{ex}
+    Consideremos en el conjunto \(\mathbb{R}\) de los números reales la topología \(\cT\) definida mediante \(\cT = \{A \subset \mathbb{R} \mid 0 \notin A \text{ o } (-1, 1) \subset A\}\). Estudiar
+    \begin{enumerate}[label=\alph*)]
+        \item Si el espacio \((\mathbb{R}, \cT)\) es \(T_2\).
+    \end{enumerate}
+\end{ex}
+
+\begin{ex}
+    En el conjunto \(\R\) de los números reales, definimos \(\cT\) como la topología definida por la subbase \(S = \{[a,b] \mid a, b \in \Q, a < b\}\). Entonces:
+    \begin{enumerate}[label=\alph*)]
+        \item Estudiar si \((\R,\cT)\) es \(T_2\) o Hausdorff.
+    \end{enumerate}
+\end{ex}
